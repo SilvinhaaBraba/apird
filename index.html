@@ -2,20 +2,30 @@
 <html>
 <head>
     <title>Meu Site no GitHub</title>
-    <script src="main.js"></script>
-
 </head>
 <body>
     <h1>Teste para API APAT</h1>
-    <form id="search-form">
-        <label for="search-input">Buscar Contato:</label>
-        <input type="text" id="search-input">
-        <button type="button" id="search-button">Buscar</button>
-    </form>
-    <div id="result">
-        <!-- Os resultados da pesquisa serão exibidos aqui -->
-    </div>
+    
+    <script>
+        const fetch = require('node-fetch'); // Se estiver usando Node.js
 
-    <script src="main.js"></script>
+        // Passo 2: Fazer uma chamada à API usando o token de acesso
+        const apiEndpoint = 'https://api.rd.services/platform/contacts';
+        const accessToken = 'your_access_token'; // Substitua pelo seu token
+
+        fetch(apiEndpoint, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'accept': 'application/json',
+          },
+        })
+          .then((response) => response.json())
+          .then((contactData) => {
+            console.log(contactData);
+            // Aqui você pode manipular os dados dos contatos e exibi-los na página
+          })
+          .catch((error) => console.error('Erro na chamada à API:', error));
+    </script>
 </body>
 </html>
