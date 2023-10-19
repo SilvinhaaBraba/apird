@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchButton.addEventListener('click', () => {
         const nameToSearch = searchNameInput.value;
         const apiEndpoint = 'https://crm.rdstation.com/api/v1/contacts';
-        const accessToken = 'seu_token_de_acesso'; // Substitua pelo seu token de acesso
+        const accessToken = '64ba6c4fd43861001ac4b874'; // Substitua pelo seu token de acesso
 
         // Fazer a chamada à API usando o nome do contato
         fetch(`${apiEndpoint}?name=${nameToSearch}`, {
