@@ -2,30 +2,59 @@
 <html>
 <head>
     <title>Meu Site no GitHub</title>
+    <style>
+        /* Estilize o botão de busca em azul */
+        #searchButton {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Estilize o botão de busca quando o mouse passar por cima */
+        #searchButton:hover {
+            background-color: darkblue;
+        }
+    </style>
 </head>
 <body>
     <h1>Teste para API APAT</h1>
+    <label for="searchName">Digite o nome do contato:</label>
+    <input type="text" id="searchName">
+    <button id="searchButton">Buscar</button>
     
+    <div id="contactInfo">
+        <!-- Aqui você pode exibir as informações do contato -->
+    </div>
+
     <script>
         const fetch = require('node-fetch'); // Se estiver usando Node.js
 
-        // Passo 2: Fazer uma chamada à API usando o token de acesso
-        const apiEndpoint = 'https://api.rd.services/platform/contacts';
-        const accessToken = 'your_access_token'; // Substitua pelo seu token
+        const searchButton = document.getElementById('searchButton');
+        const searchNameInput = document.getElementById('searchName');
+        const contactInfoDiv = document.getElementById('contactInfo');
 
-        fetch(apiEndpoint, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'accept': 'application/json',
-          },
-        })
-          .then((response) => response.json())
-          .then((contactData) => {
-            console.log(contactData);
-            // Aqui você pode manipular os dados dos contatos e exibi-los na página
-          })
-          .catch((error) => console.error('Erro na chamada à API:', error));
+        searchButton.addEventListener('click', () => {
+            const nameToSearch = searchNameInput.value;
+            const apiEndpoint = 'https://api.rd.services/platform/contacts';
+            const accessToken = 'your_access_token'; // Substitua pelo seu token
+
+            // Fazer a chamada à API usando o nome do contato
+            fetch(`${apiEndpoint}?name=${nameToSearch}`, {
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'accept': 'application/json',
+              },
+            })
+              .then((response) => response.json())
+              .then((contactData) => {
+                // Exiba as informações do contato na página
+                contactInfoDiv.innerHTML = JSON.stringify(contactData, null, 2);
+              })
+              .catch((error) => console.error('Erro na chamada à API:', error));
+        });
     </script>
 </body>
 </html>
