@@ -4,50 +4,19 @@
     <title>Meu Site no GitHub</title>
 </head>
 <body>
-    <h1>Teste para API APAT</h1
-    <a href="https://SilvinhaaBraba.github.io/apird/">Acesse o Meu Site</a>
-</body>
-</html>
-=https://SilvinhaaBraba.github.io/apird
-const fetch = require('node-fetch');
-
-// Passo 1: Obter o token de acesso
-const authUrl = 'https://api.rd.services/auth/token';
-const clientId = 'your_client_id';
-const clientSecret = 'your_client_secret';
-
-const authData = {
-  client_id: clientId,
-  client_secret: clientSecret
-};
-
-fetch(authUrl, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(authData)
-})
-  .then(response => response.json())
-  .then(data => {
-    const accessToken = data.access_token;
-
-    // Passo 2: Fazer uma chamada à API usando o token de acesso
-    const apiEndpoint = 'https://crm.rdstation.com/api/v1/contacts';
-
-    fetch(apiEndpoint, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'accept': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then(contactData => {
-        console.log(contactData);
-      })
-      .catch(error => console.error('Erro na chamada à API:', error));
-  })
-  .catch(error => console.error('Erro na obtenção do token de acesso:', error));
-
+    <h1>Teste para API APAT</h1>
+    <p>Utilize o formulário abaixo para buscar contatos:</p>
     
+    <form id="contact-form">
+        <label for="contact-name">Nome do Contato:</label>
+        <input type="text" id="contact-name" name="contact-name" required>
+        <button type="button" id="search-button">Buscar Contato</button>
+    </form>
+
+    <div id="contact-results">
+        <!-- Aqui serão exibidos os resultados da busca -->
+    </div>
+
+    <a href="https://SilvinhaaBraba.github.io/apird/">Acesse o Meu Site</a>
+</body>    
+</html>
