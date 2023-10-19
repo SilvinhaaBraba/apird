@@ -27,7 +27,7 @@
     <div id="contactInfo">
         <!-- Aqui você pode exibir as informações do contato -->
     </div>
-
+    //Início do JS
     <script>
         const searchButton = document.getElementById('searchButton');
         const searchNameInput = document.getElementById('searchName');
@@ -36,7 +36,7 @@
         searchButton.addEventListener('click', () => {
             const nameToSearch = searchNameInput.value;
             const apiEndpoint = 'https://api.rd.services/platform/contacts';
-            const accessToken = 'your_access_token'; // Substitua pelo seu token
+            const accessToken = '64ba6c4fd43861001ac4b874'; 
 
             // Fazer a chamada à API usando o nome do contato
             fetch(`${apiEndpoint}?name=${nameToSearch}`, {
