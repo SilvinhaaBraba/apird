@@ -27,7 +27,22 @@
     <div id="contactInfo">
         <!-- Aqui você pode exibir as informações do contato -->
     </div>
-  
+
+    <!-- Código JavaScript para o widget de chat -->
+    <script type="text/javascript" id="zsiqchat">
+        var $zoho = $zoho || {};
+        $zoho.salesiq = $zoho.salesiq || { widgetcode: "siq18468282b735c366bcf439211acd532bcff27e04da1ac143d8bc7e8959178594", values: {}, ready: function () { } };
+        var d = document;
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.id = "zsiqscript";
+        s.defer = true;
+        s.src = "https://salesiq.zohopublic.com/widget";
+        t = d.getElementsByTagName("script")[0];
+        t.parentNode.insertBefore(s, t);
+    </script>
+
+    <!-- Código JavaScript para a busca de contato -->
     <script>
         const searchButton = document.getElementById('searchButton');
         const searchNameInput = document.getElementById('searchName');
@@ -36,24 +51,25 @@
         searchButton.addEventListener('click', () => {
             const nameToSearch = searchNameInput.value;
             const apiEndpoint = 'https://api.rd.services/platform/contacts';
-            const accessToken = '64ba6c4fd43861001ac4b874'; 
+            const accessToken = '64ba6c4fd43861001ac4b874';
 
             // Fazer a chamada à API usando o nome do contato
             fetch(`${apiEndpoint}?name=${nameToSearch}`, {
-              method: 'GET',
-              headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'accept': 'application/json',
-              },
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'accept': 'application/json',
+                },
             })
-              .then((response) => response.json())
-              .then((contactData) => {
-                // Exiba as informações do contato na página
-                contactInfoDiv.innerHTML = JSON.stringify(contactData, null, 2);
-              })
-              .catch((error) => console.error('Erro na chamada à API:', error));
+                .then((response) => response.json())
+                .then((contactData) => {
+                    // Exiba as informações do contato na página
+                    contactInfoDiv.innerHTML = JSON.stringify(contactData, null, 2);
+                })
+                .catch((error) => console.error('Erro na chamada à API:', error));
         });
     </script>
+    <!-- Fim do JS -->
 </body>
 </html>
 
